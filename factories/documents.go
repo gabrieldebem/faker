@@ -5,7 +5,7 @@ import (
 	"github.com/gabrieldebem/faker/utils"
 )
 
-func Cpf() string {
+func Cpf(hasMask bool) string {
 	v := [2]int{}
 	cpf := utils.RandomElements(11)
 
@@ -26,14 +26,20 @@ func Cpf() string {
 	v[1] = v[1] % 11
 	v[1] = v[1] % 10
 
+	mask := "%d%d%d%d%d%d%d%d%d%d%d"
+
+	if hasMask {
+		mask = "%d%d%d.%d%d%d.%d%d%d-%d%d"
+	}
+
 	return fmt.Sprintf(
-		"%d%d%d.%d%d%d.%d%d%d-%d%d",
+		mask,
 		cpf[0], cpf[1], cpf[2], cpf[3], cpf[4],
 		cpf[5], cpf[6], cpf[7], cpf[8], v[0], v[1],
 	)
 }
 
-func Cnpj() string {
+func Cnpj(hasMask bool) string {
 	v := [2]int{}
 	cnpj := utils.RandomElements(12)
 	cnpj[8] = 0
@@ -67,8 +73,14 @@ func Cnpj() string {
 		v[1] = 0
 	}
 
+	mask := "%d%d%d%d%d%d%d%d%d%d%d%d%d%d"
+
+	if hasMask {
+		mask = "%d%d.%d%d%d.%d%d%d/%d%d%d%d-%d%d"
+	}
+
 	return fmt.Sprintf(
-		"%d%d.%d%d%d.%d%d%d/%d%d%d%d-%d%d",
+		mask,
 		cnpj[0], cnpj[1], cnpj[2], cnpj[3], cnpj[4], cnpj[5],
 		cnpj[6], cnpj[7], cnpj[8], cnpj[9], cnpj[10], cnpj[11], v[0], v[1],
 	)

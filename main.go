@@ -5,7 +5,6 @@ import (
 	"github.com/atotto/clipboard"
 	"github.com/gabrieldebem/faker/factories"
 	"os"
-	"os/exec"
 )
 
 func main() {
@@ -19,30 +18,26 @@ func main() {
 	var value string
 
 	switch args[0] {
-		case "install":
-			fmt.Println("Installing xclip...")
+	case "cpf":
+		hasMask := false
 
-			bt, err := exec.Command("/bin/sh", "./commands/xclip.sh").Output()
+		if len(args) > 1 && args[1] == "--mask" {
+			hasMask = true
+		}
 
-			if err != nil {
-				fmt.Println("An error occurred while installing xclip. Check if you already have it installed.")
-				return
-			}
-			value = string(bt)
-
-			fmt.Println(value)
-
-			fmt.Println("Done!")
-
-			return
-		case "cpf":
-			value = factories.Cpf()
+		value = factories.Cpf(hasMask)
 		break
-		case "cnpj":
-			value = factories.Cnpj()
+	case "cnpj":
+		hasMask := false
+
+		if len(args) > 1 && args[1] == "--mask" {
+			hasMask = true
+		}
+
+		value = factories.Cnpj(hasMask)
 		break
-		default:
-			value = "Invalid option"
+	default:
+		value = "Invalid option"
 		break
 	}
 
@@ -50,4 +45,3 @@ func main() {
 
 	fmt.Println(value)
 }
-
