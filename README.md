@@ -2,7 +2,9 @@
 
 This is a CLI to generate faker data.
 
-You can build this using `go build` or `make selfbuild`.
+Download the binary [here](https://github.com/gabrieldebem/faker/releases/latest)
+
+Also, you can build this using `go build` or `make selfbuild`.
 
 You will need `xclip` installed to use the clipboard functionality.
 
