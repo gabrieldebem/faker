@@ -2,14 +2,12 @@ package factories
 
 import (
 	"fmt"
-	"math"
-	"math/rand"
-	"time"
+	"github.com/gabrieldebem/faker/utils"
 )
 
 func Cpf() string {
 	v := [2]int{}
-	cpf := randomElements(11)
+	cpf := utils.RandomElements(11)
 
 	// First Digit
 	for i := 1; i <= 9; i++ {
@@ -35,24 +33,9 @@ func Cpf() string {
 	)
 }
 
-func randomElements(len int) []int {
-	var nums []int
-
-	for i := 0; i < len; i++ {
-		nums = append(nums, randomIntBetween(0, 9))
-	}
-
-	return nums
-}
-
-func randomIntBetween(first, second int) int {
-	rand.Seed(time.Now().UnixNano())
-	return int(math.Floor(rand.Float64()*float64(second-first+1)) + float64(first))
-}
-
 func Cnpj() string {
 	v := [2]int{}
-	cnpj := randomElements(12)
+	cnpj := utils.RandomElements(12)
 	cnpj[8] = 0
 	cnpj[9] = 0
 	cnpj[10] = 0
