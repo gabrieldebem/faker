@@ -4,4 +4,4 @@ builds:
     binary: faker
     goos:
       - linux
-      - darwin
+      - windows
